@@ -58,8 +58,10 @@ defmodule Ex04 do
   """
 
   #def min . . . "your code"
-  def min(lst), do: reduce(lst, &(min(&1, &2)))
-
+  def min(lst), do: reduce(lst, &get_min/2)
+  
+  def get_min(a, b) when a > b, do: b
+  def get_min(a, _)           , do: a 
   ##############################################################################
   # 4.3: 10 points #
   ##################
