@@ -39,7 +39,9 @@ defmodule Ex04 do
       [ 1, 2, 3, 4, 5 ]
 
   """
-  def reverse . . . "your code"
+  #def reverse . . . "your code"
+  def reverse(lst), do: reduce lst, [],  &([&1 | &2])
+
 
   ##############################################################################
   # 4.2:  5 points #
@@ -55,7 +57,8 @@ defmodule Ex04 do
 
   """
 
-  def min . . . "your code"
+  #def min . . . "your code"
+  def min(lst), do: reduce(lst, &(min(&1, &2)))
 
   ##############################################################################
   # 4.3: 10 points #
@@ -75,10 +78,21 @@ defmodule Ex04 do
   return value will be the thing you have to manipulate.
   """
 
-  def even_odd . . . "your code"
+  def even_odd(lst) do
+    reduce(lst, {[], []}, &split_odd_even/2) 
+    |> reverse_two_tuple 
+  end
 
+  def split_odd_even(h, {st_even, st_odd}) when Integer.is_even(h) do
+    { [ h | st_even ], st_odd }
+  end
+  def split_odd_even(h, {st_even, st_odd}) do
+    { st_even, [ h | st_odd ] }
+  end
 
-
+  def reverse_two_tuple({st_even, st_odd}) do
+    {reverse(st_even), reverse(st_odd)} 
+  end 
 
   ###########################
   # IGNORE FROM HERE TO END #
